@@ -1,0 +1,25 @@
+.burger-ingredients__items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 63%;
+}
+
+.burger-ingredients__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    text-align: center;  
+}
+
+.burger-ingredients__price-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.burger-ingredients__price {
+    margin: 10px;
+}

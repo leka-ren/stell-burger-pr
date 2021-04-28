@@ -1,9 +1,27 @@
 import "./BurgerIngredients.css";
-import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import {
+  Tab,
+  CurrencyIcon,
+} from "@ya.praktikum/react-developer-burger-ui-components";
 import { useState } from "react";
+import burgerData from "../../const/burgerData";
 
 function BurgerIngredients() {
   const [current, setCurrent] = useState("one");
+
+  const ItemMenu = ({ props }: any) => {
+    return (
+      <div className="burger-ingredients__item">
+        <img src={props.image} alt="картинка" />
+        <div className="burger-ingredients__price-content">
+          <p className="burger-ingredients__price">{props.price}</p>
+          <CurrencyIcon type="primary" />
+        </div>
+        <p>{props.name}</p>
+      </div>
+    );
+  };
+
   return (
     <div className="burger-ingredients">
       <div style={{ display: "flex" }}>
@@ -16,6 +34,18 @@ function BurgerIngredients() {
         <Tab value="three" active={current === "three"} onClick={setCurrent}>
           Three
         </Tab>
+      </div>
+      <div className="burger-ingredients__items-content">
+        <p className="text_type_main-medium">Булки</p>
+        <div className="burger-ingredients__items">
+          {burgerData.map((el) => el.type === "bun" && <ItemMenu key={el._id} props={el} />)}
+        </div>
+      </div>
+      <div className="burger-ingredients__items-content">
+        <p className="text_type_main-medium">Соусы</p>
+        <div className="burger-ingredients__items">
+          {burgerData.map((el) => el.type === "sauce" && <ItemMenu key={el._id} props={el} />)}
+        </div>
       </div>
     </div>
   );
