@@ -1,0 +1,26 @@
+.app-header {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.app-header__elements {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.app-header__element {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.app-header__elemnt-text {
+    margin: 0 10px;
+}
