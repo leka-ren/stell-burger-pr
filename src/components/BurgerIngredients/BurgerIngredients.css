@@ -1,9 +1,18 @@
+.burger-ingredients {
+    width: 49%;
+}
+
+.burger-ingredients__content {
+    height: 75vh;
+    overflow-y: scroll;
+}
+
 .burger-ingredients__items {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    width: 63%;
+    width: 100%;
 }
 
 .burger-ingredients__item {

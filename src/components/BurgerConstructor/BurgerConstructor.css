@@ -1,16 +1,83 @@
 .burger-constructor {
-    width: 50%;
+  width: 50%;
+}
+
+.burger-constructor__items {
+  width: 100%;
+  margin: 0 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .burger-constructor__item {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    margin-bottom: 16px;
-    background: #1C1C21;
+  width: 91%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin-bottom: 16px;
+  background: #1c1c21;
+  position: relative;
+}
+
+.burger-constructor__item:last-child {
+  margin-top: 16px;
 }
 
 .burger-constructor__items-main {
-    height: calc(77px * 5);
-    overflow-y: scroll;
+  width: calc(100% + 10px);
+  height: calc(77px * 5);
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  transform: translate(10px, 0px);
+}
+
+.burger-constructor__item-img {
+  height: 40px;
+  width: 80px;
+  margin: auto 24px;
+}
+
+.burger-constructor__item-dd-btn {
+  position: absolute;
+  top: 28px;
+  left: -28px;
+}
+
+.burger-constructor__item-name {
+  width: 60%;
+}
+
+.burger-constructor__item-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.burger-constructor__item-icon-price {
+  margin: 0 23px 0 9px;
+}
+
+.burger-constructor__item-icon-lock,
+.burger-constructor__item-icon-trash {
+  margin-right: 24px;
+}
+
+.burger-constructor__toral-price-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 40px;
+}
+
+.burger-constructor__toral-price {
+  margin: 0 10px;
+}
+
+.burger-constructor__total {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
