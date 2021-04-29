@@ -53,6 +53,15 @@ function BurgerIngredients() {
             )}
           </div>
         </div>
+        <div className="burger-ingredients__items-content">
+          <p className="text_type_main-medium">Ингредиенты</p>
+          <div className="burger-ingredients__items">
+            {burgerData.map(
+              (el) =>
+                el.type === "main" && <ItemMenu key={el._id} props={el} />
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
