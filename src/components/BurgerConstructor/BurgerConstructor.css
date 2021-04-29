@@ -1,0 +1,16 @@
+.burger-constructor {
+    width: 50%;
+}
+
+.burger-constructor__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-bottom: 16px;
+    background: #1C1C21;
+}
+
+.burger-constructor__items-main {
+    height: calc(77px * 5);
+    overflow-y: scroll;
+}

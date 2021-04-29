@@ -1,5 +1,5 @@
 .app {
-  background-color: #000;
+  background-color: #131316;
 }
 
 .app__content {
@@ -12,4 +12,10 @@
 
 .app__content-title {
   margin-bottom: 20px;
+}
+
+.app__burgers-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
