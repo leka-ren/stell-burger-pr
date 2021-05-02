@@ -5,22 +5,10 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useState } from "react";
 import burgerData from "../../const/burgerData";
+import ItemMenu from "../ItemMenu/ItemMenu";
 
 function BurgerIngredients() {
   const [current, setCurrent] = useState("one");
-
-  const ItemMenu = ({ props }: any) => {
-    return (
-      <div className={stylesBurgerIngredients.burgerIngredients__item}>
-        <img src={props.image} alt="картинка" />
-        <div className={stylesBurgerIngredients.burgerIngredients__priceContent}>
-          <p className={stylesBurgerIngredients.burgerIngredients__price}>{props.price}</p>
-          <CurrencyIcon type="primary" />
-        </div>
-        <p>{props.name}</p>
-      </div>
-    );
-  };
 
   return (
     <div className={stylesBurgerIngredients.burgerIngredients}>

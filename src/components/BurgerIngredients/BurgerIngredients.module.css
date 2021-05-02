@@ -25,21 +25,3 @@
   justify-content: center;
   width: 100%;
 }
-
-.burgerIngredients__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50%;
-  text-align: center;
-}
-
-.burgerIngredients__priceContent {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.burgerIngredients__price {
-  margin: 10px;
-}

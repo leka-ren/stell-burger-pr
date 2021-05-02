@@ -13,13 +13,13 @@ function AppHeader() {
         <ul className={styleAppHeader.appHeader__elements}>
           <li className={styleAppHeader.appHeader__element}>
             <BurgerIcon type="primary" />
-            <p className={styleAppHeader.appHeader__elemntText}>
+            <p className={styleAppHeader.appHeader__elemntText + ' text_type_main-default'}>
               Конструктор
             </p>
           </li>
           <li className={styleAppHeader.appHeader__element}>
             <ListIcon type="secondary" />
-            <p className={styleAppHeader.appHeader__elemntText}>
+            <p className={styleAppHeader.appHeader__elemntText + ' text_type_main-default'}>
               Лента Заказов
             </p>
           </li>
@@ -30,7 +30,7 @@ function AppHeader() {
       </span>
       <div className={styleAppHeader.appHeader__element}>
         <ProfileIcon type="secondary" />
-        <p className={styleAppHeader.appHeader__elemntText}>
+        <p className={styleAppHeader.appHeader__elemntText + ' text_type_main-default'}>
           Личный кабинет
         </p>
       </div>
