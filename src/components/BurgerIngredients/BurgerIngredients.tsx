@@ -24,6 +24,7 @@ function BurgerIngredients() {
 
   return (
     <div className={stylesBurgerIngredients.burgerIngredients}>
+      <p className={stylesBurgerIngredients.app__contentTitle}>Соберите Бургер</p>
       <div style={{ display: "flex" }}>
         <Tab value="one" active={current === "one"} onClick={setCurrent}>
           One

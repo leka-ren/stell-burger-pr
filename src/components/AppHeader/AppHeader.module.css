@@ -1,9 +1,9 @@
 .appHeader {
-    width: 60%;
+    width: 100vw;
     background-color: transparent;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin: 0 auto;
 }
@@ -30,4 +30,12 @@
 
 .appHeader__elemntText {
     margin: 0 10px;
+}
+
+.appHeader__nav {
+    margin-right: 5.8vw;
+}
+
+.appHeader__logo {
+    margin-right: 15vw;
 }

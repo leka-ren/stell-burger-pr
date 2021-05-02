@@ -9,7 +9,7 @@ import {
 function AppHeader() {
   return (
     <header className={styleAppHeader.appHeader}>
-      <nav>
+      <nav className={styleAppHeader.appHeader__nav}>
         <ul className={styleAppHeader.appHeader__elements}>
           <li className={styleAppHeader.appHeader__element}>
             <BurgerIcon type="primary" />
@@ -25,7 +25,7 @@ function AppHeader() {
           </li>
         </ul>
       </nav>
-      <span style={{ marginLeft: "-135px" }}>
+      <span className={styleAppHeader.appHeader__logo}>
         <Logo />
       </span>
       <div className={styleAppHeader.appHeader__element}>
