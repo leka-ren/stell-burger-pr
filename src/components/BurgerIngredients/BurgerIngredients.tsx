@@ -12,16 +12,16 @@ function BurgerIngredients() {
 
   return (
     <div className={stylesBurgerIngredients.burgerIngredients}>
-      <p className={stylesBurgerIngredients.app__contentTitle}>Соберите Бургер</p>
+      <p className={stylesBurgerIngredients.app__contentTitle + " text_type_main-large"}>Соберите Бургер</p>
       <div style={{ display: "flex" }}>
-        <Tab value="one" active={current === "one"} onClick={setCurrent}>
-          One
+        <Tab value="Булки" active={current === "Булки"} onClick={setCurrent}>
+          Булки
         </Tab>
-        <Tab value="two" active={current === "two"} onClick={setCurrent}>
-          Two
+        <Tab value="Соусы" active={current === "Соусы"} onClick={setCurrent}>
+          Соусы
         </Tab>
-        <Tab value="three" active={current === "three"} onClick={setCurrent}>
-          Three
+        <Tab value="Начинки" active={current === "Начинки"} onClick={setCurrent}>
+          Начинки
         </Tab>
       </div>
       <div className={stylesBurgerIngredients.burgerIngredients__content}>
@@ -35,21 +35,21 @@ function BurgerIngredients() {
         </div>
         <div className={stylesBurgerIngredients.burgerIngredients__itemsContent}>
           <p className="text_type_main-medium">Соусы</p>
-          <div className={stylesBurgerIngredients.burgerIngredients__items}>
+          <ul className={stylesBurgerIngredients.burgerIngredients__items}>
             {burgerData.map(
               (el) =>
                 el.type === "sauce" && <ItemMenu key={el._id} props={el} />
             )}
-          </div>
+          </ul>
         </div>
         <div className={stylesBurgerIngredients.burgerIngredients__itemsContent}>
           <p className="text_type_main-medium">Ингредиенты</p>
-          <div className={stylesBurgerIngredients.burgerIngredients__items}>
+          <ul className={stylesBurgerIngredients.burgerIngredients__items}>
             {burgerData.map(
               (el) =>
                 el.type === "main" && <ItemMenu key={el._id} props={el} />
             )}
-          </div>
+          </ul>
         </div>
       </div>
     </div>

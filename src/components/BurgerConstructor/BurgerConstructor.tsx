@@ -2,8 +2,6 @@ import styleBurgerConstructor from "./BurgerConstructor.module.css";
 import burgerData from "../../const/burgerData";
 import {
   CurrencyIcon,
-  LockIcon,
-  DragIcon,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
@@ -38,7 +36,7 @@ function BurgerConstructor() {
       </div>
       <div className={styleBurgerConstructor.burgerConstructor__total}>
         <span className={styleBurgerConstructor.burgerConstructor__toraPriceContent}>
-          <p className={styleBurgerConstructor.burgerConstructor__toralPrice}>
+          <p className={styleBurgerConstructor.burgerConstructor__toralPrice + " text_type_digits-default"}>
             {totalPrice + totalPriceWithBun}
           </p>
           <CurrencyIcon type="primary" />
