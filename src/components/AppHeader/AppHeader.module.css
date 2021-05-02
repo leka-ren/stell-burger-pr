@@ -1,4 +1,4 @@
-.app-header {
+.appHeader {
     width: 60%;
     background-color: transparent;
     display: flex;
@@ -8,7 +8,7 @@
     margin: 0 auto;
 }
 
-.app-header__elements {
+.appHeader__elements {
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -16,11 +16,11 @@
     padding: 0;
 }
 
-.app-header__element:first-child {
+.appHeader__element:first-child {
     margin-left: 0;
 }
 
-.app-header__element {
+.appHeader__element {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -28,6 +28,6 @@
     margin: 0 10px;
 }
 
-.app-header__elemnt-text {
+.appHeader__elemntText {
     margin: 0 10px;
 }

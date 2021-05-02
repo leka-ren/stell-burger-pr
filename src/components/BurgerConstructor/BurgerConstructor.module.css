@@ -1,0 +1,44 @@
+.burgerConstructor {
+  width: 50%;
+}
+
+.burgerConstructor__items {
+  width: 100%;
+  margin: 0 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.burgerConstructor__itemsMain {
+  width: calc(100% + 10px);
+  height: calc(77px * 4);
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  transform: translate(10px, 0px);
+}
+
+.burgerConstructor__iteDdBtn {
+  position: absolute;
+  top: 28px;
+  left: -28px;
+}
+
+.burgerConstructor__toraPriceContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 40px;
+}
+
+.burgerConstructor__toralPrice {
+  margin: 0 10px;
+}
+
+.burgerConstructor__total {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

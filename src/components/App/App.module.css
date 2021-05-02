@@ -1,5 +1,7 @@
 .app {
   background-color: #131316;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .app__content {
@@ -10,11 +12,11 @@
   align-items: flex-start;
 }
 
-.app__content-title {
+.app__contentTitle {
   margin-bottom: 20px;
 }
 
-.app__burgers-content {
+.app__burgersContent {
   display: flex;
   flex-direction: row;
   width: 100%;

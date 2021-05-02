@@ -1,4 +1,4 @@
-import "./AppHeader.css";
+import styleAppHeader from "./AppHeader.module.css";
 import {
   Logo,
   ProfileIcon,
@@ -8,18 +8,18 @@ import {
 
 function AppHeader() {
   return (
-    <header className="app-header">
+    <header className={styleAppHeader.appHeader}>
       <nav>
-        <ul className="app-header__elements">
-          <li className="app-header__element">
+        <ul className={styleAppHeader.appHeader__elements}>
+          <li className={styleAppHeader.appHeader__element}>
             <BurgerIcon type="primary" />
-            <p className="app-header__elemnt-text text_type_main-default">
+            <p className={styleAppHeader.appHeader__elemntText}>
               Конструктор
             </p>
           </li>
-          <li className="app-header__element">
+          <li className={styleAppHeader.appHeader__element}>
             <ListIcon type="secondary" />
-            <p className="app-header__elemnt-text text_type_main-default">
+            <p className={styleAppHeader.appHeader__elemntText}>
               Лента Заказов
             </p>
           </li>
@@ -28,9 +28,9 @@ function AppHeader() {
       <span style={{ marginLeft: "-135px" }}>
         <Logo />
       </span>
-      <div className="app-header__element">
+      <div className={styleAppHeader.appHeader__element}>
         <ProfileIcon type="secondary" />
-        <p className="app-header__elemnt-text text_type_main-default">
+        <p className={styleAppHeader.appHeader__elemntText}>
           Личный кабинет
         </p>
       </div>

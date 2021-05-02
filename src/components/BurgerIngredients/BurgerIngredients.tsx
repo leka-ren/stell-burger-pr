@@ -1,4 +1,4 @@
-import "./BurgerIngredients.css";
+import stylesBurgerIngredients from "./BurgerIngredients.module.css";
 import {
   Tab,
   CurrencyIcon,
@@ -11,10 +11,10 @@ function BurgerIngredients() {
 
   const ItemMenu = ({ props }: any) => {
     return (
-      <div className="burger-ingredients__item">
+      <div className={stylesBurgerIngredients.burgerIngredients__item}>
         <img src={props.image} alt="картинка" />
-        <div className="burger-ingredients__price-content">
-          <p className="text_type_digits-default burger-ingredients__price">{props.price}</p>
+        <div className={stylesBurgerIngredients.burgerIngredients__priceContent}>
+          <p className={stylesBurgerIngredients.burgerIngredients__price}>{props.price}</p>
           <CurrencyIcon type="primary" />
         </div>
         <p>{props.name}</p>
@@ -23,7 +23,7 @@ function BurgerIngredients() {
   };
 
   return (
-    <div className="burger-ingredients">
+    <div className={stylesBurgerIngredients.burgerIngredients}>
       <div style={{ display: "flex" }}>
         <Tab value="one" active={current === "one"} onClick={setCurrent}>
           One
@@ -35,27 +35,27 @@ function BurgerIngredients() {
           Three
         </Tab>
       </div>
-      <div className="burger-ingredients__content">
-        <div className="burger-ingredients__items-content">
+      <div className={stylesBurgerIngredients.burgerIngredients__content}>
+        <div className={stylesBurgerIngredients.burgerIngredients__itemsContent}>
           <p className="text_type_main-medium">Булки</p>
-          <div className="burger-ingredients__items">
+          <div className={stylesBurgerIngredients.burgerIngredients__items}>
             {burgerData.map(
               (el) => el.type === "bun" && <ItemMenu key={el._id} props={el} />
             )}
           </div>
         </div>
-        <div className="burger-ingredients__items-content">
+        <div className={stylesBurgerIngredients.burgerIngredients__itemsContent}>
           <p className="text_type_main-medium">Соусы</p>
-          <div className="burger-ingredients__items">
+          <div className={stylesBurgerIngredients.burgerIngredients__items}>
             {burgerData.map(
               (el) =>
                 el.type === "sauce" && <ItemMenu key={el._id} props={el} />
             )}
           </div>
         </div>
-        <div className="burger-ingredients__items-content">
+        <div className={stylesBurgerIngredients.burgerIngredients__itemsContent}>
           <p className="text_type_main-medium">Ингредиенты</p>
-          <div className="burger-ingredients__items">
+          <div className={stylesBurgerIngredients.burgerIngredients__items}>
             {burgerData.map(
               (el) =>
                 el.type === "main" && <ItemMenu key={el._id} props={el} />
