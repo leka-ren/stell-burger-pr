@@ -1,4 +1,5 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from 'prop-types';
 
 import stylesItemMenu from "./ItemMenu.module.css";
 
@@ -18,5 +19,9 @@ function ItemMenu({ props }: any) {
     </li>
   );
 }
+
+ItemMenu.propTypes = {
+    props: PropTypes.object,
+};
 
 export default ItemMenu;

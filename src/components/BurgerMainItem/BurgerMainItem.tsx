@@ -5,6 +5,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import TrashIcon from "../../images/TrashIcon.svg";
 import BurgerMainItemStyles from "./BurgerMainItem.module.css";
+import PropTypes from 'prop-types';
 
 function BurgerMainItem({ data, blocked, first }: any) {
   // Это не является критичным использованием данного метода выбора стилей для элемента, так как это один единственный параметр и не является хардкодом и мусором, и ошибкой точно не явлвется
@@ -17,7 +18,7 @@ function BurgerMainItem({ data, blocked, first }: any) {
   };
 
   return (
-    <div
+    <li
       style={styleItem}
       className={BurgerMainItemStyles.burgerMainItem__item}
     >
@@ -55,8 +56,14 @@ function BurgerMainItem({ data, blocked, first }: any) {
           </span>
         )}
       </div>
-    </div>
+    </li>
   );
 }
+
+BurgerMainItem.propTypes = {
+  data: PropTypes.object,
+  blocked: PropTypes.bool,
+  first: PropTypes.bool,
+};
 
 export default BurgerMainItem;

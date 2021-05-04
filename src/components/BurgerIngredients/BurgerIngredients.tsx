@@ -1,10 +1,10 @@
 import stylesBurgerIngredients from "./BurgerIngredients.module.css";
 import {
   Tab,
-  CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useState } from "react";
 import ItemMenu from "../ItemMenu/ItemMenu";
+import PropTypes from 'prop-types';
 
 function BurgerIngredients(burgerData: any) {
   const [current, setCurrent] = useState("one");
@@ -70,6 +70,10 @@ function BurgerIngredients(burgerData: any) {
       </div>
     </div>
   );
+}
+
+BurgerIngredients.propTypes = {
+  burgerData: PropTypes.object,
 }
 
 export default BurgerIngredients;

@@ -6,7 +6,6 @@ import {
 
 import BurgerMainItem from "../BurgerMainItem/BurgerMainItem";
 import PropTypes from 'prop-types';
-console.log(PropTypes);
 
 function BurgerConstructor(burgerData: any) {
   const totalPrice = burgerData.data.reduce(
@@ -48,6 +47,10 @@ function BurgerConstructor(burgerData: any) {
       </div>
     </div>
   );
+}
+
+BurgerConstructor.propTypes = {
+  burgerData: PropTypes.object,
 }
 
 export default BurgerConstructor;
