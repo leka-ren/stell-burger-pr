@@ -1,5 +1,4 @@
 import styleBurgerConstructor from "./BurgerConstructor.module.css";
-import burgerData from "../../const/burgerData";
 import {
   CurrencyIcon,
   Button,
@@ -7,21 +6,21 @@ import {
 
 import BurgerMainItem from "../BurgerMainItem/BurgerMainItem";
 
-function BurgerConstructor() {
-  const totalPrice = burgerData.reduce(
-    (acc, el) => (el.type === "main" ? acc + el.price : acc),
+function BurgerConstructor(burgerData: any) {
+  const totalPrice = burgerData.data.reduce(
+    (acc: any, el: any) => (el.type === "main" ? acc + el.price : acc),
     0
   );
 
-  const bunData = burgerData.find((el) => el.type === "bun");
+  const bunData = burgerData.data.find((el: any) => el.type === "bun");
   const totalPriceWithBun = bunData?.price || 0;
   return (
     <div className={styleBurgerConstructor.burgerConstructor}>
       <div className={styleBurgerConstructor.burgerConstructor__items}>
         <BurgerMainItem data={bunData} blocked={true} first={true} />
-        <div className={styleBurgerConstructor.burgerConstructor__itemsMain}>
-          {burgerData.map(
-            (el) =>
+        <ul className={styleBurgerConstructor.burgerConstructor__itemsMain}>
+          {burgerData.data.map(
+            (el: any) =>
               el.type === "main" && (
                 <BurgerMainItem
                   key={el._id}
@@ -31,7 +30,7 @@ function BurgerConstructor() {
                 />
               )
           )}
-        </div>
+        </ul>
         <BurgerMainItem data={bunData} blocked={true} first={false} />
       </div>
       <div className={styleBurgerConstructor.burgerConstructor__total}>
