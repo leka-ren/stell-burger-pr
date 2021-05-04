@@ -1,0 +1,45 @@
+.burgerMainItem__item {
+  width: 91%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  background: #1c1c21;
+  position: relative;
+  padding: 0;
+  margin: 0 0 16px;
+}
+
+.burgerMainItem__item:last-child {
+  margin-top: 16px;
+}
+
+.burgerMainItem__itemImg {
+  height: 40px;
+  width: 80px;
+  margin: auto 24px;
+}
+
+.burgerMainItem__itemName {
+  width: 60%;
+}
+
+.burgerMainItem__itemOptions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.burgerMainItem__itemIconPrice {
+  margin: 0 23px 0 9px;
+}
+
+.burgerMainItem__itemIconLock,
+.burgerMainItem__itemIconTrash {
+  margin-right: 24px;
+}
+
+.burgerMainItem__iteDdBtn {
+  position: absolute;
+  top: 28px;
+  left: -28px;
+}

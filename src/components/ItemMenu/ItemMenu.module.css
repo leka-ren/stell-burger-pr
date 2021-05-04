@@ -1,0 +1,32 @@
+.burgerIngredients__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  text-align: center;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.burgerIngredients__priceContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.burgerIngredients__price {
+  margin: 10px;
+}
+
+.burgerIngredients__counter {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 32px;
+    width: 32px;
+    background: #4C4CFF;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+}

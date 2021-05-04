@@ -1,0 +1,41 @@
+.appHeader {
+    width: 100vw;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.appHeader__elements {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    padding: 0;
+}
+
+.appHeader__element:first-child {
+    margin-left: 0;
+}
+
+.appHeader__element {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.appHeader__elemntText {
+    margin: 0 10px;
+}
+
+.appHeader__nav {
+    margin-right: 5.8vw;
+}
+
+.appHeader__logo {
+    margin-right: 15vw;
+}
