@@ -16,7 +16,7 @@ function App() {
       .then((data) => {
         setIngredientsData(data);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => setIngredientsData(e));
   }, []);
 
   return (

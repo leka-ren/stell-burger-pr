@@ -9,7 +9,6 @@ import ItemMenu from "../ItemMenu/ItemMenu";
 function BurgerIngredients(burgerData: any) {
   const [current, setCurrent] = useState("one");
 
-  console.log(burgerData);
   return (
     <div className={stylesBurgerIngredients.burgerIngredients}>
       <p

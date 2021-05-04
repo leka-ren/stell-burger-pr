@@ -5,6 +5,8 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import BurgerMainItem from "../BurgerMainItem/BurgerMainItem";
+import PropTypes from 'prop-types';
+console.log(PropTypes);
 
 function BurgerConstructor(burgerData: any) {
   const totalPrice = burgerData.data.reduce(
