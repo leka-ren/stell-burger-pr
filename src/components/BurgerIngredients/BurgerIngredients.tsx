@@ -6,7 +6,7 @@ import { useState } from "react";
 import ItemMenu from "../ItemMenu/ItemMenu";
 import PropTypes from 'prop-types';
 
-function BurgerIngredients(burgerData: any) {
+function BurgerIngredients({burgerData, showModal, typeModalWindow}: any) {
   const [current, setCurrent] = useState("one");
 
   return (
@@ -74,6 +74,8 @@ function BurgerIngredients(burgerData: any) {
 
 BurgerIngredients.propTypes = {
   burgerData: PropTypes.object,
+  showModal: PropTypes.func,
+  typeModalWindow: PropTypes.func,
 }
 
 export default BurgerIngredients;

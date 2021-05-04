@@ -1,0 +1,22 @@
+.orderDetails__conent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.orderDetails__orderNumber {
+    text-shadow: 0px 0px 16px rgba(51, 51, 255, 0.25), 0px 0px 8px rgba(51, 51, 255, 0.25), 0px 4px 32px rgba(51, 51, 255, 0.5);
+    text-align: center;
+    margin: 0;
+}
+
+.orderDetails__img {
+    margin: 60px 0;
+}
+
+.orderDetails__text {
+    color: #8585AD;
+}

@@ -1,14 +1,16 @@
+import { useEffect, useState } from "react";
 import stylesApp from "./App.module.css";
 import AppHeader from "../AppHeader/AppHeader";
 import BurgerIngredients from "../BurgerIngredients/BurgerIngredients";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
-import { useEffect, useState } from "react";
+import OrderDetails from "../OrderDetails/OrderDetails";
 
 function App() {
   const [ingredientsData, setIngredientsData] = useState<any>([]);
+  const [showModal, setShowModal] = useState(true);
+  const [typeModalWindow, setTypeModalWindow] = useState('');
 
-  const urlDataIngredients =
-    "https://norma.nomoreparties.space/api/ingredients";
+  const urlDataIngredients = "https://norma.nomoreparties.space/api/ingredients";
 
   useEffect(() => {
     fetch(urlDataIngredients)
@@ -26,20 +28,21 @@ function App() {
         <div className={stylesApp.app__burgersContent}>
           {ingredientsData.error ? (
             <div>
-              <p>Что-то пошло не так</p>
+              <p className="text_type_main-large">Что-то пошло не так</p>
             </div>
           ) : ingredientsData.data ? (
             <>
-              <BurgerIngredients {...ingredientsData} />
-              <BurgerConstructor {...ingredientsData} />
+              <BurgerIngredients typeModalWindow={setTypeModalWindow} showModal={setShowModal} burgerData={ingredientsData} />
+              <BurgerConstructor typeModalWindow={setTypeModalWindow} showModal={setShowModal} burgerData={ingredientsData} />
             </>
           ) : (
             <div>
-              <p>Идет загрузка ингредиентов...</p>
+              <p className="text_type_main-large">Идет загрузка ингредиентов...</p>
             </div>
           )}
         </div>
       </section>
+      {showModal && typeModalWindow === "Order Information" && <OrderDetails showModal={setShowModal} />}
     </div>
   );
 }

@@ -5,9 +5,9 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import BurgerMainItem from "../BurgerMainItem/BurgerMainItem";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-function BurgerConstructor(burgerData: any) {
+function BurgerConstructor({ burgerData, showModal, typeModalWindow }: any) {
   const totalPrice = burgerData.data.reduce(
     (acc: any, el: any) => (el.type === "main" ? acc + el.price : acc),
     0
@@ -35,15 +35,27 @@ function BurgerConstructor(burgerData: any) {
         <BurgerMainItem data={bunData} blocked={true} first={false} />
       </div>
       <div className={styleBurgerConstructor.burgerConstructor__total}>
-        <span className={styleBurgerConstructor.burgerConstructor__toraPriceContent}>
-          <p className={styleBurgerConstructor.burgerConstructor__toralPrice + " text_type_digits-default"}>
+        <span
+          className={styleBurgerConstructor.burgerConstructor__toraPriceContent}
+        >
+          <p
+            className={
+              styleBurgerConstructor.burgerConstructor__toralPrice +
+              " text_type_digits-default"
+            }
+          >
             {totalPrice + totalPriceWithBun}
           </p>
           <CurrencyIcon type="primary" />
         </span>
-        <Button type="primary" size="medium">
-          Оформить заказ
-        </Button>
+        <span onClick={()=> { 
+            showModal(true);
+            typeModalWindow('Order Information');
+          }}>
+          <Button type="primary" size="medium">
+            Оформить заказ
+          </Button>
+        </span>
       </div>
     </div>
   );
@@ -51,6 +63,8 @@ function BurgerConstructor(burgerData: any) {
 
 BurgerConstructor.propTypes = {
   burgerData: PropTypes.object,
-}
+  showModal: PropTypes.func,
+  typeModalWindow: PropTypes.func,
+};
 
 export default BurgerConstructor;
