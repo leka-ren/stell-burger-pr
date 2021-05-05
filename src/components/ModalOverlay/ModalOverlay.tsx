@@ -10,7 +10,7 @@ function ModalOverlay({ showModal, children }: any) {
 
   useEffect(() => {
     document.addEventListener("keydown", closeEvent);
-    return document.removeEventListener("keydown", closeEvent);
+    return () => document.removeEventListener("keydown", closeEvent);
   }, []);
 
   return (

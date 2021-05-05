@@ -1,14 +1,18 @@
 import { useEffect, useState } from "react";
+
 import stylesApp from "./App.module.css";
+
 import AppHeader from "../AppHeader/AppHeader";
 import BurgerIngredients from "../BurgerIngredients/BurgerIngredients";
 import BurgerConstructor from "../BurgerConstructor/BurgerConstructor";
 import OrderDetails from "../OrderDetails/OrderDetails";
+import IngredientDetails from "../IngredientDetails/IngredientDetails";
 
 function App() {
   const [ingredientsData, setIngredientsData] = useState<any>([]);
   const [showModal, setShowModal] = useState(true);
   const [typeModalWindow, setTypeModalWindow] = useState('');
+  const [currentDataIngredients, setCurrentDataIngredients] = useState({});
 
   const urlDataIngredients = "https://norma.nomoreparties.space/api/ingredients";
 
@@ -32,7 +36,7 @@ function App() {
             </div>
           ) : ingredientsData.data ? (
             <>
-              <BurgerIngredients typeModalWindow={setTypeModalWindow} showModal={setShowModal} burgerData={ingredientsData} />
+              <BurgerIngredients currentDataIngredients={setCurrentDataIngredients} typeModalWindow={setTypeModalWindow} showModal={setShowModal} burgerData={ingredientsData} />
               <BurgerConstructor typeModalWindow={setTypeModalWindow} showModal={setShowModal} burgerData={ingredientsData} />
             </>
           ) : (
@@ -43,6 +47,7 @@ function App() {
         </div>
       </section>
       {showModal && typeModalWindow === "Order Information" && <OrderDetails showModal={setShowModal} />}
+      {showModal && typeModalWindow === "Ingredients information" && <IngredientDetails showModal={setShowModal} dataIngredients={currentDataIngredients} />}
     </div>
   );
 }

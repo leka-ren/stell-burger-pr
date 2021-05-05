@@ -48,14 +48,16 @@ function BurgerConstructor({ burgerData, showModal, typeModalWindow }: any) {
           </p>
           <CurrencyIcon type="primary" />
         </span>
-        <span onClick={()=> { 
+        <Button
+          onClick={() => {
             showModal(true);
-            typeModalWindow('Order Information');
-          }}>
-          <Button type="primary" size="medium">
-            Оформить заказ
-          </Button>
-        </span>
+            typeModalWindow("Order Information");
+          }}
+          type="primary"
+          size="medium"
+        >
+          Оформить заказ
+        </Button>
       </div>
     </div>
   );

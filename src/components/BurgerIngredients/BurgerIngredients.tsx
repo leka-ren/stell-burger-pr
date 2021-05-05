@@ -2,11 +2,11 @@ import stylesBurgerIngredients from "./BurgerIngredients.module.css";
 import {
   Tab,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ItemMenu from "../ItemMenu/ItemMenu";
 import PropTypes from 'prop-types';
 
-function BurgerIngredients({burgerData, showModal, typeModalWindow}: any) {
+function BurgerIngredients({burgerData, showModal, typeModalWindow, currentDataIngredients}: any) {
   const [current, setCurrent] = useState("one");
 
   return (
@@ -41,7 +41,7 @@ function BurgerIngredients({burgerData, showModal, typeModalWindow}: any) {
           <div className={stylesBurgerIngredients.burgerIngredients__items}>
             {burgerData.data.map(
               (el: any) =>
-                el.type === "bun" && <ItemMenu key={el._id} props={el} />
+                el.type === "bun" && <ItemMenu showModal={showModal} typeModalWindow={typeModalWindow} currentDataIngredients={currentDataIngredients} key={el._id} data={el} />
             )}
           </div>
         </div>
@@ -52,7 +52,7 @@ function BurgerIngredients({burgerData, showModal, typeModalWindow}: any) {
           <ul className={stylesBurgerIngredients.burgerIngredients__items}>
             {burgerData.data.map(
               (el: any) =>
-                el.type === "sauce" && <ItemMenu key={el._id} props={el} />
+                el.type === "sauce" && <ItemMenu showModal={showModal} typeModalWindow={typeModalWindow} currentDataIngredients={currentDataIngredients} key={el._id} data={el} />
             )}
           </ul>
         </div>
@@ -63,7 +63,7 @@ function BurgerIngredients({burgerData, showModal, typeModalWindow}: any) {
           <ul className={stylesBurgerIngredients.burgerIngredients__items}>
             {burgerData.data.map(
               (el: any) =>
-                el.type === "main" && <ItemMenu key={el._id} props={el} />
+                el.type === "main" && <ItemMenu showModal={showModal} typeModalWindow={typeModalWindow} currentDataIngredients={currentDataIngredients} key={el._id} data={el} />
             )}
           </ul>
         </div>
@@ -76,6 +76,7 @@ BurgerIngredients.propTypes = {
   burgerData: PropTypes.object,
   showModal: PropTypes.func,
   typeModalWindow: PropTypes.func,
+  currentDataIngredients: PropTypes.func,
 }
 
 export default BurgerIngredients;
