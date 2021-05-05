@@ -1,6 +1,8 @@
 .modal__window {
     height: 87vh;
     width: 47vw;
+    max-height: 720px;
+    max-width: 720px;
     background-color: #1C1C21;
     position: relative;
     border-radius: 40px;
