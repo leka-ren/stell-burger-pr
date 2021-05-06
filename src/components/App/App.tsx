@@ -11,14 +11,16 @@ import IngredientDetails from "../IngredientDetails/IngredientDetails";
 function App() {
   const [ingredientsData, setIngredientsData] = useState<any>([]);
   const [showModal, setShowModal] = useState(true);
-  const [typeModalWindow, setTypeModalWindow] = useState('');
+  const [typeModalWindow, setTypeModalWindow] = useState("");
   const [currentDataIngredients, setCurrentDataIngredients] = useState({});
 
   const urlDataIngredients = "https://norma.nomoreparties.space/api/ingredients";
 
   useEffect(() => {
     fetch(urlDataIngredients)
-      .then((res) => res.json())
+      .then((res) => {
+        return res.ok ? res.json() : { error: { message: "Что-то пошло не так" } };
+      })
       .then((data) => {
         setIngredientsData(data);
       })
