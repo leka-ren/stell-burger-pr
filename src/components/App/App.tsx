@@ -34,7 +34,7 @@ function App() {
       <AppHeader />
       <section className={stylesApp.app__content}>
         <div className={stylesApp.app__burgersContent}>
-          {ingredientsData.error ? (
+          {ingredientsData.message ? (
             <div>
               <p className="text_type_main-large">Что-то пошло не так</p>
             </div>
@@ -50,15 +50,8 @@ function App() {
           )}
         </div>
       </section>
-      {showModal && typeModalWindow === "Order Information" && (
-        <OrderDetails showModal={setShowModal} />
-      )}
-      {showModal && typeModalWindow === "Ingredients information" && (
-        <IngredientDetails
-          showModal={setShowModal}
-          dataIngredients={currentDataIngredients}
-        />
-      )}
+      {showModal && typeModalWindow === "Order Information" && <OrderDetails showModal={setShowModal} />}
+      {showModal && typeModalWindow === "Ingredients information" && <IngredientDetails showModal={setShowModal} dataIngredients={currentDataIngredients} />}
     </div>
   );
 }
