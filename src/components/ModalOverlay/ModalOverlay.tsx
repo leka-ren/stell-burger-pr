@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 function ModalOverlay({ showModal, children }: any) {
   const closeEvent = (e: any) => {
-    if(e.key === "Escape" || e.target.className.toString().match(/overlay/)) showModal(false);
+    if(e.key === "Escape" || e.target.id === 'overlay') showModal(false);
   };
 
   useEffect(() => {
@@ -16,7 +16,8 @@ function ModalOverlay({ showModal, children }: any) {
   return (
     <div
       onClick={closeEvent}
-      className={stylesModalOverlay.modal__overlay + " overlay"}
+      id="overlay"
+      className={stylesModalOverlay.modal__overlay}
     >
       <Modal showModal={showModal}>{children}</Modal>
     </div>
