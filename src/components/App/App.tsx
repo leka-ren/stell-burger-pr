@@ -17,14 +17,16 @@ function App() {
   const urlDataIngredients = "https://norma.nomoreparties.space/api/ingredients";
 
   useEffect(() => {
-    fetch(urlDataIngredients)
-      .then((res) => {
-        return res.ok ? res.json() : { error: { message: "Что-то пошло не так" } };
-      })
-      .then((data) => {
+    (async () => {
+      try {
+        let response = await fetch(urlDataIngredients);
+        if (!response.ok) throw new Error("Что-то пошло не так");
+        const data = await response.json();
         setIngredientsData(data);
-      })
-      .catch((e) => setIngredientsData(e));
+      } catch (e) {
+        setIngredientsData(e);
+      }
+    })();
   }, []);
 
   return (
@@ -48,8 +50,15 @@ function App() {
           )}
         </div>
       </section>
-      {showModal && typeModalWindow === "Order Information" && <OrderDetails showModal={setShowModal} />}
-      {showModal && typeModalWindow === "Ingredients information" && <IngredientDetails showModal={setShowModal} dataIngredients={currentDataIngredients} />}
+      {showModal && typeModalWindow === "Order Information" && (
+        <OrderDetails showModal={setShowModal} />
+      )}
+      {showModal && typeModalWindow === "Ingredients information" && (
+        <IngredientDetails
+          showModal={setShowModal}
+          dataIngredients={currentDataIngredients}
+        />
+      )}
     </div>
   );
 }
