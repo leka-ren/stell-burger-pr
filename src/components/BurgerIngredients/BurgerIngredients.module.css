@@ -1,5 +1,5 @@
 .burgerIngredients {
-  width: 35vw;
+  width: fit-content;
   max-width: 600px;
   margin-right: 40px;
 }

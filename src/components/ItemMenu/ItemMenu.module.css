@@ -9,6 +9,10 @@
   padding: 0;
 }
 
+.burgerIngredients__item:hover {
+  cursor: pointer;
+}
+
 .burgerIngredients__priceContent {
   display: flex;
   flex-direction: row;

@@ -1,18 +1,23 @@
 import stylesBurgerIngredients from "./BurgerIngredients.module.css";
 import {
   Tab,
-  CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useState } from "react";
-import burgerData from "../../const/burgerData";
+import { useEffect, useState } from "react";
 import ItemMenu from "../ItemMenu/ItemMenu";
+import PropTypes from 'prop-types';
 
-function BurgerIngredients() {
+function BurgerIngredients({burgerData, showModal, typeModalWindow, currentDataIngredients}: any) {
   const [current, setCurrent] = useState("one");
 
   return (
     <div className={stylesBurgerIngredients.burgerIngredients}>
-      <p className={stylesBurgerIngredients.app__contentTitle + " text_type_main-large"}>Соберите Бургер</p>
+      <p
+        className={
+          stylesBurgerIngredients.app__contentTitle + " text_type_main-large"
+        }
+      >
+        Соберите Бургер
+      </p>
       <div style={{ display: "flex" }}>
         <Tab value="Булки" active={current === "Булки"} onClick={setCurrent}>
           Булки
@@ -20,40 +25,58 @@ function BurgerIngredients() {
         <Tab value="Соусы" active={current === "Соусы"} onClick={setCurrent}>
           Соусы
         </Tab>
-        <Tab value="Начинки" active={current === "Начинки"} onClick={setCurrent}>
+        <Tab
+          value="Начинки"
+          active={current === "Начинки"}
+          onClick={setCurrent}
+        >
           Начинки
         </Tab>
       </div>
       <div className={stylesBurgerIngredients.burgerIngredients__content}>
-        <div className={stylesBurgerIngredients.burgerIngredients__itemsContent}>
+        <div
+          className={stylesBurgerIngredients.burgerIngredients__itemsContent}
+        >
           <p className="text_type_main-medium">Булки</p>
           <div className={stylesBurgerIngredients.burgerIngredients__items}>
-            {burgerData.map(
-              (el) => el.type === "bun" && <ItemMenu key={el._id} props={el} />
+            {burgerData.data.map(
+              (el: any) =>
+                el.type === "bun" && <ItemMenu showModal={showModal} typeModalWindow={typeModalWindow} currentDataIngredients={currentDataIngredients} key={el._id} data={el} />
             )}
           </div>
         </div>
-        <div className={stylesBurgerIngredients.burgerIngredients__itemsContent}>
+        <div
+          className={stylesBurgerIngredients.burgerIngredients__itemsContent}
+        >
           <p className="text_type_main-medium">Соусы</p>
           <ul className={stylesBurgerIngredients.burgerIngredients__items}>
-            {burgerData.map(
-              (el) =>
-                el.type === "sauce" && <ItemMenu key={el._id} props={el} />
+            {burgerData.data.map(
+              (el: any) =>
+                el.type === "sauce" && <ItemMenu showModal={showModal} typeModalWindow={typeModalWindow} currentDataIngredients={currentDataIngredients} key={el._id} data={el} />
             )}
           </ul>
         </div>
-        <div className={stylesBurgerIngredients.burgerIngredients__itemsContent}>
+        <div
+          className={stylesBurgerIngredients.burgerIngredients__itemsContent}
+        >
           <p className="text_type_main-medium">Ингредиенты</p>
           <ul className={stylesBurgerIngredients.burgerIngredients__items}>
-            {burgerData.map(
-              (el) =>
-                el.type === "main" && <ItemMenu key={el._id} props={el} />
+            {burgerData.data.map(
+              (el: any) =>
+                el.type === "main" && <ItemMenu showModal={showModal} typeModalWindow={typeModalWindow} currentDataIngredients={currentDataIngredients} key={el._id} data={el} />
             )}
           </ul>
         </div>
       </div>
     </div>
   );
+}
+
+BurgerIngredients.propTypes = {
+  burgerData: PropTypes.object,
+  showModal: PropTypes.func,
+  typeModalWindow: PropTypes.func,
+  currentDataIngredients: PropTypes.func,
 }
 
 export default BurgerIngredients;

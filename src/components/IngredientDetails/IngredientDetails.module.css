@@ -1,0 +1,30 @@
+.ingredientDetails__title {
+  margin: 10px 0;
+}
+
+.ingredientDetails__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ingredientDetails__discription {
+  width: 80%;
+  text-align: center;
+}
+
+.ingredientDetails__nutrients {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  /* display: grid;
+    grid-template-columns: repeat(4, 1fr); */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.ingredientDetails__nutrientsSum {
+  text-align: center;
+}
