@@ -6,59 +6,74 @@ import {
 
 import BurgerMainItem from "../BurgerMainItem/BurgerMainItem";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
-function BurgerConstructor({ burgerData, showModal, typeModalWindow }: any) {
-  const totalPrice = burgerData.data.reduce(
+function BurgerConstructor({ showModal, typeModalWindow }: any) {
+  const ingredientsConstructor = useSelector(
+    (store: any) => store.dataBurger.ingredientsConstructor
+  );
+  const totalPrice = ingredientsConstructor.reduce(
     (acc: any, el: any) => (el.type === "main" ? acc + el.price : acc),
     0
   );
 
-  const bunData = burgerData.data.find((el: any) => el.type === "bun");
+  const bunData = ingredientsConstructor.find((el: any) => el.type === "bun");
   const totalPriceWithBun = bunData?.price || 0;
   return (
     <div className={styleBurgerConstructor.burgerConstructor}>
-      <div className={styleBurgerConstructor.burgerConstructor__items}>
-        <BurgerMainItem data={bunData} blocked={true} first={true} />
-        <ul className={styleBurgerConstructor.burgerConstructor__itemsMain}>
-          {burgerData.data.map(
-            (el: any) =>
-              el.type === "main" && (
-                <BurgerMainItem
-                  key={el._id}
-                  data={el}
-                  blocked={false}
-                  first={false}
-                />
-              )
-          )}
-        </ul>
-        <BurgerMainItem data={bunData} blocked={true} first={false} />
-      </div>
-      <div className={styleBurgerConstructor.burgerConstructor__total}>
-        <span
-          className={styleBurgerConstructor.burgerConstructor__toraPriceContent}
-        >
-          <p
-            className={
-              styleBurgerConstructor.burgerConstructor__toralPrice +
-              " text_type_digits-default"
-            }
-          >
-            {totalPrice + totalPriceWithBun}
-          </p>
-          <CurrencyIcon type="primary" />
-        </span>
-        <Button
-          onClick={() => {
-            showModal(true);
-            typeModalWindow("Order Information");
-          }}
-          type="primary"
-          size="medium"
-        >
-          Оформить заказ
-        </Button>
-      </div>
+      {ingredientsConstructor.length === 0 && (
+        <div style={{border: "solid #8585AD 1px", borderRadius: 12, height: "100%", width: "100%"}}>
+          <p style={{margin: "auto 20px"}}>Список ингредиентов пуст</p>
+        </div>
+      )}
+      {ingredientsConstructor.length > 0 && (
+        <>
+          <div className={styleBurgerConstructor.burgerConstructor__items}>
+            <BurgerMainItem data={bunData} blocked={true} first={true} />
+            <ul className={styleBurgerConstructor.burgerConstructor__itemsMain}>
+              {ingredientsConstructor.map(
+                (el: any) =>
+                  el.type === "main" && (
+                    <BurgerMainItem
+                      key={el._id}
+                      data={el}
+                      blocked={false}
+                      first={false}
+                    />
+                  )
+              )}
+            </ul>
+            <BurgerMainItem data={bunData} blocked={true} first={false} />
+          </div>
+          <div className={styleBurgerConstructor.burgerConstructor__total}>
+            <span
+              className={
+                styleBurgerConstructor.burgerConstructor__toraPriceContent
+              }
+            >
+              <p
+                className={
+                  styleBurgerConstructor.burgerConstructor__toralPrice +
+                  " text_type_digits-default"
+                }
+              >
+                {totalPrice + totalPriceWithBun}
+              </p>
+              <CurrencyIcon type="primary" />
+            </span>
+            <Button
+              onClick={() => {
+                showModal(true);
+                typeModalWindow("Order Information");
+              }}
+              type="primary"
+              size="medium"
+            >
+              Оформить заказ
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
