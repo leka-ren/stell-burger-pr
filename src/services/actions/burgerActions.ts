@@ -1,15 +1,15 @@
 import { apiUrl, apiPost } from "../../const/burgerData";
 
 export const GET_DATA_INGREDIENTS = "GET_DATA_INGREDIENTS";
-export const GET_DATA_REQUEST = "GET_DATA_REQUEST";
-export const GET_DATA_FAILED = "GET_DATA_FAILED";
+export const GET_DATA_REQUEST_INGREDIENTS = "GET_DATA_REQUEST_INGREDIENTS";
+export const GET_DATA_FAILED_INGREDIENTS = "GET_DATA_FAILED_INGREDIENTS";
 
 export function getIngredientsData() {
   return function (dispatch: any) {
     fetch(apiUrl)
       .then((res) => {
         dispatch({
-          type: GET_DATA_REQUEST,
+          type: GET_DATA_REQUEST_INGREDIENTS,
         });
         return res.json();
       })
@@ -21,7 +21,7 @@ export function getIngredientsData() {
             items: res.data,
           });
         } else {
-          dispatch({ type: GET_DATA_FAILED });
+          dispatch({ type: GET_DATA_FAILED_INGREDIENTS });
         }
       });
   };

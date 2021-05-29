@@ -1,7 +1,7 @@
 import {
   GET_DATA_INGREDIENTS,
-  GET_DATA_REQUEST,
-  GET_DATA_FAILED,
+  GET_DATA_REQUEST_INGREDIENTS,
+  GET_DATA_FAILED_INGREDIENTS,
 } from "../actions/burgerActions";
 
 const initialState = {
@@ -23,13 +23,13 @@ export const burgerReducers = (state = initialState, action: any) => {
         ingredients: action.items,
       };
     }
-    case GET_DATA_REQUEST: {
+    case GET_DATA_REQUEST_INGREDIENTS: {
       return {
         ...state,
         request: true,
       };
     }
-    case GET_DATA_FAILED: {
+    case GET_DATA_FAILED_INGREDIENTS: {
       return {
         ...state,
         failed: true,
