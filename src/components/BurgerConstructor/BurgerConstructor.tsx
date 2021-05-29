@@ -6,9 +6,11 @@ import {
 
 import BurgerMainItem from "../BurgerMainItem/BurgerMainItem";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { postOrder } from "../../services/actions/burgerActions";
 
 function BurgerConstructor({ showModal, typeModalWindow }: any) {
+  const dispatch = useDispatch();
   const ingredientsConstructor = useSelector(
     (store: any) => store.dataBurger.ingredientsConstructor
   );
@@ -65,6 +67,7 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
               onClick={() => {
                 showModal(true);
                 typeModalWindow("Order Information");
+                dispatch(postOrder(ingredientsConstructor));
               }}
               type="primary"
               size="medium"

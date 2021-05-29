@@ -5,6 +5,7 @@ export const GET_DATA_REQUEST_INGREDIENTS = "GET_DATA_REQUEST_INGREDIENTS";
 export const GET_DATA_FAILED_INGREDIENTS = "GET_DATA_FAILED_INGREDIENTS";
 export const GET_DATA_CURRENT_INGREDIENTS = "GET_DATA_CURRENT_INGREDIENTS";
 export const CLEAR_INGREDIENT_DATA = "CLEAR_INGREDIENT_DATA";
+export const GET_ORDER = "GET_ORDER";
 
 export function getIngredientsData() {
   return function (dispatch: any) {
@@ -25,5 +26,26 @@ export function getIngredientsData() {
           dispatch({ type: GET_DATA_FAILED_INGREDIENTS });
         }
       });
+  };
+}
+
+export function postOrder(ingredientsData: any) {
+  return function (dispatch: any) {
+    fetch(apiPost, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ingredients: ingredientsData,
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) =>
+        dispatch({
+          type: GET_ORDER,
+          order: res,
+        })
+      );
   };
 }

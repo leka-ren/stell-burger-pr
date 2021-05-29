@@ -4,6 +4,7 @@ import {
   GET_DATA_FAILED_INGREDIENTS,
   GET_DATA_CURRENT_INGREDIENTS,
   CLEAR_INGREDIENT_DATA,
+  GET_ORDER
 } from "../actions/burgerActions";
 
 const initialState = {
@@ -47,6 +48,12 @@ export const burgerReducers = (state = initialState, action: any) => {
         return {
             ...state,
             currentIngredientsInfo: {},
+        }
+    }
+    case GET_ORDER: {
+        return {
+            ...state,
+            lastOrder: action.order,
         }
     }
     default:
