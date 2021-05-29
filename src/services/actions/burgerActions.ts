@@ -3,6 +3,7 @@ import { apiUrl, apiPost } from "../../const/burgerData";
 export const GET_DATA_INGREDIENTS = "GET_DATA_INGREDIENTS";
 export const GET_DATA_REQUEST_INGREDIENTS = "GET_DATA_REQUEST_INGREDIENTS";
 export const GET_DATA_FAILED_INGREDIENTS = "GET_DATA_FAILED_INGREDIENTS";
+export const GET_DATA_CURRENT_INGREDIENTS = "GET_DATA_CURRENT_INGREDIENTS";
 
 export function getIngredientsData() {
   return function (dispatch: any) {

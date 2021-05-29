@@ -2,6 +2,7 @@ import {
   GET_DATA_INGREDIENTS,
   GET_DATA_REQUEST_INGREDIENTS,
   GET_DATA_FAILED_INGREDIENTS,
+  GET_DATA_CURRENT_INGREDIENTS
 } from "../actions/burgerActions";
 
 const initialState = {
@@ -34,6 +35,12 @@ export const burgerReducers = (state = initialState, action: any) => {
         ...state,
         failed: true,
       };
+    }
+    case GET_DATA_CURRENT_INGREDIENTS: {
+        return {
+            ...state,
+            currentIngredientsInfo: action.currentIngredient,
+        }
     }
     default:
       return state;
