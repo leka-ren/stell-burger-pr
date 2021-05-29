@@ -4,6 +4,7 @@ export const GET_DATA_INGREDIENTS = "GET_DATA_INGREDIENTS";
 export const GET_DATA_REQUEST_INGREDIENTS = "GET_DATA_REQUEST_INGREDIENTS";
 export const GET_DATA_FAILED_INGREDIENTS = "GET_DATA_FAILED_INGREDIENTS";
 export const GET_DATA_CURRENT_INGREDIENTS = "GET_DATA_CURRENT_INGREDIENTS";
+export const CLEAR_INGREDIENT_DATA = "CLEAR_INGREDIENT_DATA";
 
 export function getIngredientsData() {
   return function (dispatch: any) {
@@ -16,7 +17,6 @@ export function getIngredientsData() {
       })
       .then((res) => {
         if (res && res.success) {
-            console.log(res.data);
           dispatch({
             type: GET_DATA_INGREDIENTS,
             items: res.data,
