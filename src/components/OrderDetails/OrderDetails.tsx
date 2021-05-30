@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 function OrderDetails({ showModal }: any) {
   const orderNumber = useSelector((store:any) => store.dataBurger.lastOrder);
+  console.log(orderNumber);
 
   return (
     <ModalOverlay showModal={showModal}>
@@ -17,7 +18,7 @@ function OrderDetails({ showModal }: any) {
             " text_type_digits-large"
           }
         >
-          {orderNumber}
+          {orderNumber.number}
         </p>
         <p className="text_type_main-medium">идентификатор заказа</p>
         <img

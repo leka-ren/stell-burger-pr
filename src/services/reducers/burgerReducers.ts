@@ -8,12 +8,17 @@ import {
   ADD_ITEM_TO_CONSTRUCTOR,
   SET_BUN,
   DELETE_ITEM_CONSTRUCTOR,
+  POST_ORDER_DETAILS_REQUEST,
+  POST_ORDER_DETAILS_FAILD,
+  POST_ORDER_DETAILS_SUCCESS
 } from "../actions/burgerActions";
 
 const initialState = {
   ingredients: [],
   request: false,
   failed: false,
+  postRequest: false,
+  postFailed: false,
   ingredientsConstructor: [],
   currentIngredientsInfo: {},
   bun: {},
@@ -39,6 +44,7 @@ export const burgerReducers = (state = initialState, action: any) => {
     case GET_DATA_FAILED_INGREDIENTS: {
       return {
         ...state,
+        request: false,
         failed: true,
       };
     }
@@ -85,6 +91,27 @@ export const burgerReducers = (state = initialState, action: any) => {
           }
           return el;
         }),
+      }
+    }
+    case POST_ORDER_DETAILS_REQUEST: {
+      return {
+        ...state,
+        postRequest: true,
+      }
+    }
+    case POST_ORDER_DETAILS_FAILD: {
+      return {
+        ...state,
+        postRequest: true,
+        postFailed: true,
+      }
+    }
+    case POST_ORDER_DETAILS_SUCCESS: {
+      return {
+        ...state,
+        postRequest: true,
+        postFailed: true,
+        lastOrder: action.order,
       }
     }
     default:

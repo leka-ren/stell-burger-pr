@@ -17,9 +17,10 @@ import {
 
 function BurgerConstructor({ showModal, typeModalWindow }: any) {
   const dispatch = useDispatch();
-  const {ingredientsConstructor, bun} = useSelector(
-    (store: any) =>({ ingredientsConstructor: store.dataBurger.ingredientsConstructor, bun: store.dataBurger.bun})
-  );
+  const { ingredientsConstructor, bun } = useSelector((store: any) => ({
+    ingredientsConstructor: store.dataBurger.ingredientsConstructor,
+    bun: store.dataBurger.bun,
+  }));
 
   const totalPrice = ingredientsConstructor.reduce(
     (acc: any, el: any) => acc + el.price,
@@ -51,9 +52,15 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
     }),
   });
 
+  const orderHandler = () => {
+    showModal(true);
+    typeModalWindow("Order Information");
+    dispatch(postOrder(ingredientsConstructor));
+  };
+
   return (
     <div className={styleBurgerConstructor.burgerConstructor} ref={dropTarget}>
-      {(ingredientsConstructor.length === 0 && !bun.type) && (
+      {ingredientsConstructor.length === 0 && !bun.type && (
         <div
           style={{
             border: `solid ${isHover ? "#123456" : "#8585AD"} 1px`,
@@ -62,7 +69,7 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
             width: "100%",
           }}
         >
-          <p style={{ margin: "auto 20px"}}>Список ингредиентов пуст</p>
+          <p style={{ margin: "auto 20px" }}>Список ингредиентов пуст</p>
         </div>
       )}
       {(ingredientsConstructor.length > 0 || bun.type) && (
@@ -74,7 +81,11 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
             <ul className={styleBurgerConstructor.burgerConstructor__itemsMain}>
               {ingredientsConstructor.map((el: any) => (
                 <BurgerMainItem
-                  key={el._id + Math.floor(Math.random() * (1000000000 - 1000)) + 1000}
+                  key={
+                    el._id +
+                    Math.floor(Math.random() * (1000000000 - 1000)) +
+                    1000
+                  }
                   data={el}
                   blocked={false}
                   first={false}
@@ -101,15 +112,7 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
               </p>
               <CurrencyIcon type="primary" />
             </span>
-            <Button
-              onClick={() => {
-                showModal(true);
-                typeModalWindow("Order Information");
-                dispatch(postOrder(ingredientsConstructor));
-              }}
-              type="primary"
-              size="medium"
-            >
+            <Button onClick={orderHandler} type="primary" size="medium">
               Оформить заказ
             </Button>
           </div>
