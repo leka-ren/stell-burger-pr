@@ -6,6 +6,8 @@ export const GET_DATA_FAILED_INGREDIENTS = "GET_DATA_FAILED_INGREDIENTS";
 export const GET_DATA_CURRENT_INGREDIENTS = "GET_DATA_CURRENT_INGREDIENTS";
 export const CLEAR_INGREDIENT_DATA = "CLEAR_INGREDIENT_DATA";
 export const GET_ORDER = "GET_ORDER";
+export const ADD_ITEM_TO_CONSTRUCTOR = "ADD_ITEM_TO_CONSTRUCTOR";
+export const SET_BUN = "SET_BUN";
 
 export function getIngredientsData() {
   return function (dispatch: any) {

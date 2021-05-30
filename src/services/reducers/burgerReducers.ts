@@ -4,7 +4,9 @@ import {
   GET_DATA_FAILED_INGREDIENTS,
   GET_DATA_CURRENT_INGREDIENTS,
   CLEAR_INGREDIENT_DATA,
-  GET_ORDER
+  GET_ORDER,
+  ADD_ITEM_TO_CONSTRUCTOR,
+  SET_BUN,
 } from "../actions/burgerActions";
 
 const initialState = {
@@ -13,6 +15,7 @@ const initialState = {
   failed: false,
   ingredientsConstructor: [],
   currentIngredientsInfo: {},
+  bun: {},
   lastOrder: {},
 };
 
@@ -39,22 +42,37 @@ export const burgerReducers = (state = initialState, action: any) => {
       };
     }
     case GET_DATA_CURRENT_INGREDIENTS: {
-        return {
-            ...state,
-            currentIngredientsInfo: action.currentIngredient,
-        }
+      return {
+        ...state,
+        currentIngredientsInfo: action.currentIngredient,
+      };
     }
     case CLEAR_INGREDIENT_DATA: {
-        return {
-            ...state,
-            currentIngredientsInfo: {},
-        }
+      return {
+        ...state,
+        currentIngredientsInfo: {},
+      };
     }
     case GET_ORDER: {
-        return {
-            ...state,
-            lastOrder: action.order,
-        }
+      return {
+        ...state,
+        lastOrder: action.order,
+      };
+    }
+    case ADD_ITEM_TO_CONSTRUCTOR: {
+      return {
+        ...state,
+        // @ts-ignore
+        ingredientsConstructor: state.ingredientsConstructor.concat([action.item,]),
+      };
+    }
+    case SET_BUN: {
+      console.log(state.ingredientsConstructor);
+      return {
+        ...state,
+        // @ts-ignore
+        bun: action.item,
+      };
     }
     default:
       return state;

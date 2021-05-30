@@ -8,7 +8,7 @@ import BurgerMainItemStyles from "./BurgerMainItem.module.css";
 import PropTypes from 'prop-types';
 
 function BurgerMainItem({ data, blocked, first }: any) {
-  // Это не является критичным использованием данного метода выбора стилей для элемента, так как это один единственный параметр и не является хардкодом и мусором, и ошибкой точно не явлвется
+  // console.log(data);
   const styleItem = {
     borderRadius: blocked
       ? first

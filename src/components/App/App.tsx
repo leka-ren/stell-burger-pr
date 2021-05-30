@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 import stylesApp from "./App.module.css";
 
 import AppHeader from "../AppHeader/AppHeader";
@@ -40,8 +43,10 @@ function App() {
             </div>
           ) : ingredientsData.data ? (
             <>
-              <BurgerIngredients currentDataIngredients={setCurrentDataIngredients} typeModalWindow={setTypeModalWindow} showModal={setShowModal} burgerData={ingredientsData} />
-              <BurgerConstructor typeModalWindow={setTypeModalWindow} showModal={setShowModal} burgerData={ingredientsData} />
+              <DndProvider backend={HTML5Backend}>
+                <BurgerIngredients currentDataIngredients={setCurrentDataIngredients} typeModalWindow={setTypeModalWindow} showModal={setShowModal} burgerData={ingredientsData} />
+                <BurgerConstructor typeModalWindow={setTypeModalWindow} showModal={setShowModal} burgerData={ingredientsData} />
+              </DndProvider>
             </>
           ) : (
             <div>

@@ -8,44 +8,83 @@ import BurgerMainItem from "../BurgerMainItem/BurgerMainItem";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { postOrder } from "../../services/actions/burgerActions";
+import { useDrop } from "react-dnd";
+
+import {
+  ADD_ITEM_TO_CONSTRUCTOR,
+  SET_BUN,
+} from "../../services/actions/burgerActions";
 
 function BurgerConstructor({ showModal, typeModalWindow }: any) {
   const dispatch = useDispatch();
-  const ingredientsConstructor = useSelector(
-    (store: any) => store.dataBurger.ingredientsConstructor
-  );
-  const totalPrice = ingredientsConstructor.reduce(
-    (acc: any, el: any) => (el.type === "main" ? acc + el.price : acc),
-    0
+  const {ingredientsConstructor, bun} = useSelector(
+    (store: any) =>({ ingredientsConstructor: store.dataBurger.ingredientsConstructor, bun: store.dataBurger.bun})
   );
 
-  const bunData = ingredientsConstructor.find((el: any) => el.type === "bun");
-  const totalPriceWithBun = bunData?.price || 0;
+  const totalPrice = ingredientsConstructor.reduce(
+    (acc: any, el: any) => acc + el.price,
+    0
+  );
+  const bunPrice = bun.price || 0;
+
+  const setDataConstroctor = (item: any) => {
+    console.log(item);
+    if (item.type !== "bun") {
+      dispatch({
+        type: ADD_ITEM_TO_CONSTRUCTOR,
+        item: item,
+      });
+    } else {
+      dispatch({
+        type: SET_BUN,
+        item: item,
+      });
+    }
+  };
+
+  const [{ isHover }, dropTarget] = useDrop({
+    accept: "ingredient",
+    drop(item: any) {
+      setDataConstroctor(item.data);
+    },
+    collect: (monitor) => ({
+      isHover: monitor.isOver(),
+    }),
+  });
+
   return (
-    <div className={styleBurgerConstructor.burgerConstructor}>
-      {ingredientsConstructor.length === 0 && (
-        <div style={{border: "solid #8585AD 1px", borderRadius: 12, height: "100%", width: "100%"}}>
-          <p style={{margin: "auto 20px"}}>Список ингредиентов пуст</p>
+    <div className={styleBurgerConstructor.burgerConstructor} ref={dropTarget}>
+      {(ingredientsConstructor.length === 0 && !bun.type) && (
+        <div
+          style={{
+            border: "solid #8585AD 1px",
+            borderRadius: 12,
+            height: "100%",
+            width: "100%",
+          }}
+        >
+          <p style={{ margin: "auto 20px" }}>Список ингредиентов пуст</p>
         </div>
       )}
-      {ingredientsConstructor.length > 0 && (
+      {(ingredientsConstructor.length > 0 || bun.type) && (
         <>
           <div className={styleBurgerConstructor.burgerConstructor__items}>
-            <BurgerMainItem data={bunData} blocked={true} first={true} />
+            {bun.type && (
+              <BurgerMainItem data={bun} blocked={true} first={true} />
+            )}
             <ul className={styleBurgerConstructor.burgerConstructor__itemsMain}>
-              {ingredientsConstructor.map(
-                (el: any) =>
-                  el.type === "main" && (
-                    <BurgerMainItem
-                      key={el._id}
-                      data={el}
-                      blocked={false}
-                      first={false}
-                    />
-                  )
-              )}
+              {ingredientsConstructor.map((el: any) => (
+                <BurgerMainItem
+                  key={el._id}
+                  data={el}
+                  blocked={false}
+                  first={false}
+                />
+              ))}
             </ul>
-            <BurgerMainItem data={bunData} blocked={true} first={false} />
+            {bun.type && (
+              <BurgerMainItem data={bun} blocked={true} first={false} />
+            )}
           </div>
           <div className={styleBurgerConstructor.burgerConstructor__total}>
             <span
@@ -59,7 +98,7 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
                   " text_type_digits-default"
                 }
               >
-                {totalPrice + totalPriceWithBun}
+                {totalPrice + bunPrice}
               </p>
               <CurrencyIcon type="primary" />
             </span>

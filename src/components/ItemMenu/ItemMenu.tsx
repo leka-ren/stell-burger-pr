@@ -1,5 +1,6 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
+import { useDrag } from "react-dnd";
 import { useDispatch } from "react-redux";
 import { GET_DATA_CURRENT_INGREDIENTS } from "../../services/actions/burgerActions";
 
@@ -8,6 +9,14 @@ import stylesItemMenu from "./ItemMenu.module.css";
 function ItemMenu({ data, showModal, typeModalWindow }: any) {
   const dispatch = useDispatch();
   const counter = 1;
+
+  const [{ opacity }, ref] = useDrag({
+    type: "ingredient",
+    item: { data },
+    collect: (monitor) => ({
+      opacity: monitor.isDragging() ? 0.5 : 1,
+    }),
+  });
 
   const getDataIngredients = () => {
     showModal(true);
@@ -20,6 +29,8 @@ function ItemMenu({ data, showModal, typeModalWindow }: any) {
 
   return (
     <li
+      style={{ opacity }}
+      ref={ref}
       onClick={getDataIngredients}
       className={stylesItemMenu.burgerIngredients__item}
     >
