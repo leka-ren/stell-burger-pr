@@ -7,8 +7,12 @@ import TrashIcon from "../../images/TrashIcon.svg";
 import BurgerMainItemStyles from "./BurgerMainItem.module.css";
 import PropTypes from 'prop-types';
 
+import { DELETE_ITEM_CONSTRUCTOR } from "../../services/actions/burgerActions";
+import { useDispatch } from "react-redux";
+
 function BurgerMainItem({ data, blocked, first }: any) {
   // console.log(data);
+  const dispatch = useDispatch();
   const styleItem = {
     borderRadius: blocked
       ? first
@@ -16,6 +20,13 @@ function BurgerMainItem({ data, blocked, first }: any) {
         : "40px 40px 88px 88px"
       : "40px",
   };
+
+  const handlerDeleteItem = () => {
+    dispatch({
+      type: DELETE_ITEM_CONSTRUCTOR,
+      id: data._id
+    });
+  }
 
   return (
     <li
@@ -52,7 +63,7 @@ function BurgerMainItem({ data, blocked, first }: any) {
           <span
             className={BurgerMainItemStyles.burgerMainItem__itemIconTrash}
           >
-            <img src={TrashIcon} alt="иконка для удаления элемента" />
+            <img onClick={handlerDeleteItem} src={TrashIcon} alt="иконка для удаления элемента" />
           </span>
         )}
       </div>

@@ -7,6 +7,7 @@ import {
   GET_ORDER,
   ADD_ITEM_TO_CONSTRUCTOR,
   SET_BUN,
+  DELETE_ITEM_CONSTRUCTOR,
 } from "../actions/burgerActions";
 
 const initialState = {
@@ -73,6 +74,12 @@ export const burgerReducers = (state = initialState, action: any) => {
         // @ts-ignore
         bun: action.item,
       };
+    }
+    case DELETE_ITEM_CONSTRUCTOR: {
+      return {
+        ...state,
+        ingredientsConstructor: state.ingredientsConstructor.filter((el:any) => el._id !== action.id),
+      }
     }
     default:
       return state;

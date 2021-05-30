@@ -8,6 +8,7 @@ export const CLEAR_INGREDIENT_DATA = "CLEAR_INGREDIENT_DATA";
 export const GET_ORDER = "GET_ORDER";
 export const ADD_ITEM_TO_CONSTRUCTOR = "ADD_ITEM_TO_CONSTRUCTOR";
 export const SET_BUN = "SET_BUN";
+export const DELETE_ITEM_CONSTRUCTOR = "DELETE_ITEM_CONSTRUCTOR";
 
 export function getIngredientsData() {
   return function (dispatch: any) {
