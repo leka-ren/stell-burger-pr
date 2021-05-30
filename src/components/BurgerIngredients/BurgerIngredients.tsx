@@ -113,7 +113,7 @@ function BurgerIngredients({
                         showModal={showModal}
                         typeModalWindow={typeModalWindow}
                         currentDataIngredients={currentDataIngredients}
-                        key={el._id}
+                        key={el._id + Math.floor(Math.random() * (1000000000 - 1000)) + 1000}
                         data={el}
                       />
                     )
@@ -136,7 +136,7 @@ function BurgerIngredients({
                         showModal={showModal}
                         typeModalWindow={typeModalWindow}
                         currentDataIngredients={currentDataIngredients}
-                        key={el._id}
+                        key={el._id + Math.floor(Math.random() * (1000000000 - 1000)) + 1000}
                         data={el}
                       />
                     )
@@ -162,7 +162,7 @@ function BurgerIngredients({
                         showModal={showModal}
                         typeModalWindow={typeModalWindow}
                         currentDataIngredients={currentDataIngredients}
-                        key={el._id}
+                        key={el._id + Math.floor(Math.random() * (1000000000 - 1000)) + 1000}
                         data={el}
                       />
                     )

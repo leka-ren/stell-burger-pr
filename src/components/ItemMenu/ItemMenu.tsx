@@ -18,7 +18,6 @@ function ItemMenu({ data, showModal, typeModalWindow }: any) {
   const getCounter = () => {
     if (data.type === "bun") {
       if(bun.name === data.name) {
-        console.log(bun.type);
         return 1;
       }
     } else {

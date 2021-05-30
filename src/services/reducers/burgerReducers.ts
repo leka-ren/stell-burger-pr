@@ -68,7 +68,6 @@ export const burgerReducers = (state = initialState, action: any) => {
       };
     }
     case SET_BUN: {
-      console.log(state.ingredientsConstructor);
       return {
         ...state,
         // @ts-ignore
@@ -76,9 +75,16 @@ export const burgerReducers = (state = initialState, action: any) => {
       };
     }
     case DELETE_ITEM_CONSTRUCTOR: {
+      let count = 0;
       return {
         ...state,
-        ingredientsConstructor: state.ingredientsConstructor.filter((el:any) => el._id !== action.id),
+        ingredientsConstructor: state.ingredientsConstructor.filter((el:any) => {
+          if( el._id === action.id && !count){
+            count++;
+            return el._id !== action.id
+          }
+          return el;
+        }),
       }
     }
     default:

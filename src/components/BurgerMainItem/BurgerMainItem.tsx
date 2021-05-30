@@ -11,7 +11,6 @@ import { DELETE_ITEM_CONSTRUCTOR } from "../../services/actions/burgerActions";
 import { useDispatch } from "react-redux";
 
 function BurgerMainItem({ data, blocked, first }: any) {
-  // console.log(data);
   const dispatch = useDispatch();
   const styleItem = {
     borderRadius: blocked

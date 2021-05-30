@@ -28,7 +28,6 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
   const bunPrice = bun.price || 0;
 
   const setDataConstroctor = (item: any) => {
-    console.log(item);
     if (item.type !== "bun") {
       dispatch({
         type: ADD_ITEM_TO_CONSTRUCTOR,
@@ -75,7 +74,7 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
             <ul className={styleBurgerConstructor.burgerConstructor__itemsMain}>
               {ingredientsConstructor.map((el: any) => (
                 <BurgerMainItem
-                  key={el._id}
+                  key={el._id + Math.floor(Math.random() * (1000000000 - 1000)) + 1000}
                   data={el}
                   blocked={false}
                   first={false}
