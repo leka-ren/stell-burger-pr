@@ -1,14 +1,32 @@
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { useDrag } from "react-dnd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { GET_DATA_CURRENT_INGREDIENTS } from "../../services/actions/burgerActions";
+import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import stylesItemMenu from "./ItemMenu.module.css";
 
 function ItemMenu({ data, showModal, typeModalWindow }: any) {
   const dispatch = useDispatch();
-  const counter = 1;
+
+  const { ingredientsConstructor, bun } = useSelector((store: any) => ({
+    ingredientsConstructor: store.dataBurger.ingredientsConstructor,
+    bun: store.dataBurger.bun,
+  }));
+
+  const getCounter = () => {
+    if (data.type === "bun") {
+      if(bun.name === data.name) {
+        console.log(bun.type);
+        return 1;
+      }
+    } else {
+      return ingredientsConstructor.filter((el: any) => el._id === data._id).length;
+    }
+  }
+
+  let counter = getCounter() || 0;
 
   const [{ opacity }, ref] = useDrag({
     type: "ingredient",
@@ -34,14 +52,7 @@ function ItemMenu({ data, showModal, typeModalWindow }: any) {
       onClick={getDataIngredients}
       className={stylesItemMenu.burgerIngredients__item}
     >
-      <span
-        className={
-          stylesItemMenu.burgerIngredients__counter +
-          " text_type_digits-default"
-        }
-      >
-        {counter}
-      </span>
+      <Counter count={counter} size="default" />
       <img src={data.image} alt="картинка" />
       <div className={stylesItemMenu.burgerIngredients__priceContent}>
         <p

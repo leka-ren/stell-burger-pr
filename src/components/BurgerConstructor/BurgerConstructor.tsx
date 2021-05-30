@@ -57,13 +57,13 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
       {(ingredientsConstructor.length === 0 && !bun.type) && (
         <div
           style={{
-            border: "solid #8585AD 1px",
+            border: `solid ${isHover ? "#123456" : "#8585AD"} 1px`,
             borderRadius: 12,
             height: "100%",
             width: "100%",
           }}
         >
-          <p style={{ margin: "auto 20px" }}>Список ингредиентов пуст</p>
+          <p style={{ margin: "auto 20px"}}>Список ингредиентов пуст</p>
         </div>
       )}
       {(ingredientsConstructor.length > 0 || bun.type) && (
