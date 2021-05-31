@@ -68,9 +68,9 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
         type: UPDATE_CONSTRUCTOR,
         itemsUpdate: {
           dragIndex,
-          hoverIndex
-        }
-      })
+          hoverIndex,
+        },
+      });
     },
     [ingredientsConstructor]
   );
@@ -96,17 +96,19 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
               <BurgerMainItem data={bun} blocked={true} first={true} />
             )}
             <ul className={styleBurgerConstructor.burgerConstructor__itemsMain}>
-              {ingredientsConstructor.map((el: any, i: any) => (
-                <BurgerMainItem
-                  moveCard={moveCard}
-                  key={el._id + ingredientsConstructor.length}
-                  id={el._id}
-                  index={i}
-                  data={el}
-                  blocked={false}
-                  first={false}
-                />
-              ))}
+              {ingredientsConstructor.map((el: any, i: any) => {
+                return (
+                  <BurgerMainItem
+                    moveCard={moveCard}
+                    key={i}
+                    id={el._id}
+                    index={i}
+                    data={el}
+                    blocked={false}
+                    first={false}
+                  />
+                );
+              })}
             </ul>
             {bun.type && (
               <BurgerMainItem data={bun} blocked={true} first={false} />

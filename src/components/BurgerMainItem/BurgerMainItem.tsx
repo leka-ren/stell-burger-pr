@@ -101,7 +101,6 @@ function BurgerMainItem({ data, blocked, first, index, id, moveCard }: any) {
 
   return (
     <li
-      data-handler-id={handlerId}
       style={{...styleItem, opacity}}
       className={BurgerMainItemStyles.burgerMainItem__item}
       ref={refItem}
