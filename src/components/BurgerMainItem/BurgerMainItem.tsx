@@ -39,6 +39,9 @@ function BurgerMainItem({ data, blocked, first, index, id, moveCard }: any) {
       };
     },
     hover(item: DragItem, monitor: DropTargetMonitor) {
+      if (data.type === "bun") {
+        return;
+      }
       if (!refItem.current) {
         return;
       }
