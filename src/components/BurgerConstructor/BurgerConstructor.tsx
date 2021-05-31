@@ -59,7 +59,7 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
   const orderHandler = () => {
     showModal(true);
     typeModalWindow("Order Information");
-    dispatch(postOrder(ingredientsConstructor));
+    dispatch(postOrder(ingredientsConstructor, bun));
   };
 
   const moveCard = useCallback(

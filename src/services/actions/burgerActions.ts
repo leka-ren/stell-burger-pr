@@ -35,7 +35,7 @@ export function getIngredientsData() {
   };
 }
 
-export function postOrder(ingredientsData: any) {
+export function postOrder(ingredientsData: any, bun:any) {
   return function (dispatch: any) {
     dispatch({ type: POST_ORDER_DETAILS_REQUEST });
 
@@ -45,7 +45,7 @@ export function postOrder(ingredientsData: any) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        ingredients: ingredientsData.map((el:any) => el._id),
+        ingredients: [bun._id].concat(ingredientsData.map((el:any) => el._id)),
       }),
     })
       .then((res) => res.json())
