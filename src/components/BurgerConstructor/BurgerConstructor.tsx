@@ -9,11 +9,15 @@ import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { postOrder } from "../../services/actions/burgerActions";
 import { useDrop } from "react-dnd";
+import update from "immutability-helper";
+
+import { UPDATE_CONSTRUCTOR } from "../../services/actions/burgerActions";
 
 import {
   ADD_ITEM_TO_CONSTRUCTOR,
   SET_BUN,
 } from "../../services/actions/burgerActions";
+import { useCallback, useEffect, useState } from "react";
 
 function BurgerConstructor({ showModal, typeModalWindow }: any) {
   const dispatch = useDispatch();
@@ -58,6 +62,19 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
     dispatch(postOrder(ingredientsConstructor));
   };
 
+  const moveCard = useCallback(
+    (dragIndex: number, hoverIndex: number) => {
+      dispatch({
+        type: UPDATE_CONSTRUCTOR,
+        itemsUpdate: {
+          dragIndex,
+          hoverIndex
+        }
+      })
+    },
+    [ingredientsConstructor]
+  );
+
   return (
     <div className={styleBurgerConstructor.burgerConstructor} ref={dropTarget}>
       {ingredientsConstructor.length === 0 && !bun.type && (
@@ -79,13 +96,12 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
               <BurgerMainItem data={bun} blocked={true} first={true} />
             )}
             <ul className={styleBurgerConstructor.burgerConstructor__itemsMain}>
-              {ingredientsConstructor.map((el: any) => (
+              {ingredientsConstructor.map((el: any, i: any) => (
                 <BurgerMainItem
-                  key={
-                    el._id +
-                    Math.floor(Math.random() * (1000000000 - 1000)) +
-                    1000
-                  }
+                  moveCard={moveCard}
+                  key={el._id + ingredientsConstructor.length}
+                  id={el._id}
+                  index={i}
                   data={el}
                   blocked={false}
                   first={false}

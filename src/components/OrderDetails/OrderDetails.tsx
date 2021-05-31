@@ -1,4 +1,3 @@
-import { useState } from "react";
 import stylesOrderDetails from "./OrderDetails.module.css";
 import ModalOverlay from "../ModalOverlay/ModalOverlay";
 import PropTypes from "prop-types";
@@ -7,7 +6,6 @@ import { useSelector } from "react-redux";
 
 function OrderDetails({ showModal }: any) {
   const orderNumber = useSelector((store:any) => store.dataBurger.lastOrder);
-  console.log(orderNumber);
 
   return (
     <ModalOverlay showModal={showModal}>

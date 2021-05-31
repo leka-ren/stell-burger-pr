@@ -10,7 +10,8 @@ import {
   DELETE_ITEM_CONSTRUCTOR,
   POST_ORDER_DETAILS_REQUEST,
   POST_ORDER_DETAILS_FAILD,
-  POST_ORDER_DETAILS_SUCCESS
+  POST_ORDER_DETAILS_SUCCESS,
+  UPDATE_CONSTRUCTOR
 } from "../actions/burgerActions";
 
 const initialState = {
@@ -112,6 +113,14 @@ export const burgerReducers = (state = initialState, action: any) => {
         postRequest: true,
         postFailed: true,
         lastOrder: action.order,
+      }
+    }
+    case UPDATE_CONSTRUCTOR: {
+      const currentItems = state.ingredientsConstructor;
+      currentItems.splice(action.itemsUpdate.dragIndex, 0, currentItems.splice(action.itemsUpdate.hoverIndex, 1)[0]);
+      return {
+        ...state,
+        ingredientsConstructor: currentItems
       }
     }
     default:
