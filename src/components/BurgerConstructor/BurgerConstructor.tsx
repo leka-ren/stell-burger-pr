@@ -57,9 +57,13 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
   });
 
   const orderHandler = () => {
-    showModal(true);
-    typeModalWindow("Order Information");
-    dispatch(postOrder(ingredientsConstructor, bun));
+    if (bun.name) {
+      showModal(true);
+      typeModalWindow("Order Information");
+      dispatch(postOrder(ingredientsConstructor, bun));
+    } else if (!bun) {
+      return;
+    }
   };
 
   const moveCard = useCallback(
@@ -126,12 +130,12 @@ function BurgerConstructor({ showModal, typeModalWindow }: any) {
                   " text_type_digits-default"
                 }
               >
-                {totalPrice + bunPrice}
+                {totalPrice + bunPrice * 2}
               </p>
               <CurrencyIcon type="primary" />
             </span>
             <Button onClick={orderHandler} type="primary" size="medium">
-              Оформить заказ
+              {bun.name ? "Оформить заказ" : "Добавтье булочки!"}
             </Button>
           </div>
         </>
