@@ -1,13 +1,11 @@
-import { useState } from "react";
 import stylesOrderDetails from "./OrderDetails.module.css";
 import ModalOverlay from "../ModalOverlay/ModalOverlay";
 import PropTypes from "prop-types";
 import doneOrderImg from "../../images/done.png";
+import { useSelector } from "react-redux";
 
 function OrderDetails({ showModal }: any) {
-  const [orderNumber, setOrderNumber] = useState(
-    Math.floor(100000 + Math.random() * (999999 + 1 - 100000))
-  );
+  const orderNumber = useSelector((store:any) => store.dataBurger.lastOrder);
 
   return (
     <ModalOverlay showModal={showModal}>
@@ -18,7 +16,7 @@ function OrderDetails({ showModal }: any) {
             " text_type_digits-large"
           }
         >
-          {orderNumber}
+          {orderNumber.number}
         </p>
         <p className="text_type_main-medium">идентификатор заказа</p>
         <img

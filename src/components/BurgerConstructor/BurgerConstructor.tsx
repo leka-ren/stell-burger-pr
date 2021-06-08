@@ -6,59 +6,140 @@ import {
 
 import BurgerMainItem from "../BurgerMainItem/BurgerMainItem";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { postOrder } from "../../services/actions/burgerActions";
+import { useDrop } from "react-dnd";
+import update from "immutability-helper";
 
-function BurgerConstructor({ burgerData, showModal, typeModalWindow }: any) {
-  const totalPrice = burgerData.data.reduce(
-    (acc: any, el: any) => (el.type === "main" ? acc + el.price : acc),
+import { UPDATE_CONSTRUCTOR } from "../../services/actions/burgerActions";
+
+import {
+  ADD_ITEM_TO_CONSTRUCTOR,
+  SET_BUN,
+} from "../../services/actions/burgerActions";
+import { useCallback, useEffect, useState } from "react";
+
+function BurgerConstructor({ showModal, typeModalWindow }: any) {
+  const dispatch = useDispatch();
+  const { ingredientsConstructor, bun } = useSelector((store: any) => ({
+    ingredientsConstructor: store.dataBurger.ingredientsConstructor,
+    bun: store.dataBurger.bun,
+  }));
+
+  const totalPrice = ingredientsConstructor.reduce(
+    (acc: any, el: any) => acc + el.price,
     0
   );
+  const bunPrice = bun.price || 0;
 
-  const bunData = burgerData.data.find((el: any) => el.type === "bun");
-  const totalPriceWithBun = bunData?.price || 0;
+  const setDataConstroctor = (item: any) => {
+    if (item.type !== "bun") {
+      dispatch({
+        type: ADD_ITEM_TO_CONSTRUCTOR,
+        item: item,
+      });
+    } else {
+      dispatch({
+        type: SET_BUN,
+        item: item,
+      });
+    }
+  };
+
+  const [{ isHover }, dropTarget] = useDrop({
+    accept: "ingredient",
+    drop(item: any) {
+      setDataConstroctor(item.data);
+    },
+    collect: (monitor) => ({
+      isHover: monitor.isOver(),
+    }),
+  });
+
+  const orderHandler = () => {
+    if (bun.name) {
+      showModal(true);
+      typeModalWindow("Order Information");
+      dispatch(postOrder(ingredientsConstructor, bun));
+    } else if (!bun) {
+      return;
+    }
+  };
+
+  const moveCard = useCallback(
+    (dragIndex: number, hoverIndex: number) => {
+      dispatch({
+        type: UPDATE_CONSTRUCTOR,
+        itemsUpdate: {
+          dragIndex,
+          hoverIndex,
+        },
+      });
+    },
+    [ingredientsConstructor]
+  );
+
   return (
-    <div className={styleBurgerConstructor.burgerConstructor}>
-      <div className={styleBurgerConstructor.burgerConstructor__items}>
-        <BurgerMainItem data={bunData} blocked={true} first={true} />
-        <ul className={styleBurgerConstructor.burgerConstructor__itemsMain}>
-          {burgerData.data.map(
-            (el: any) =>
-              el.type === "main" && (
-                <BurgerMainItem
-                  key={el._id}
-                  data={el}
-                  blocked={false}
-                  first={false}
-                />
-              )
-          )}
-        </ul>
-        <BurgerMainItem data={bunData} blocked={true} first={false} />
-      </div>
-      <div className={styleBurgerConstructor.burgerConstructor__total}>
-        <span
-          className={styleBurgerConstructor.burgerConstructor__toraPriceContent}
-        >
-          <p
-            className={
-              styleBurgerConstructor.burgerConstructor__toralPrice +
-              " text_type_digits-default"
-            }
-          >
-            {totalPrice + totalPriceWithBun}
-          </p>
-          <CurrencyIcon type="primary" />
-        </span>
-        <Button
-          onClick={() => {
-            showModal(true);
-            typeModalWindow("Order Information");
+    <div className={styleBurgerConstructor.burgerConstructor} ref={dropTarget}>
+      {ingredientsConstructor.length === 0 && !bun.type && (
+        <div
+          style={{
+            border: `solid ${isHover ? "#123456" : "#8585AD"} 1px`,
+            borderRadius: 12,
+            height: "100%",
+            width: "100%",
           }}
-          type="primary"
-          size="medium"
         >
-          Оформить заказ
-        </Button>
-      </div>
+          <p style={{ margin: "auto 20px" }}>Список ингредиентов пуст</p>
+        </div>
+      )}
+      {(ingredientsConstructor.length > 0 || bun.type) && (
+        <>
+          <div className={styleBurgerConstructor.burgerConstructor__items}>
+            {bun.type && (
+              <BurgerMainItem data={bun} blocked={true} first={true} />
+            )}
+            <ul className={styleBurgerConstructor.burgerConstructor__itemsMain}>
+              {ingredientsConstructor.map((el: any, i: any) => {
+                return (
+                  <BurgerMainItem
+                    moveCard={moveCard}
+                    key={i}
+                    id={el._id}
+                    index={i}
+                    data={el}
+                    blocked={false}
+                    first={false}
+                  />
+                );
+              })}
+            </ul>
+            {bun.type && (
+              <BurgerMainItem data={bun} blocked={true} first={false} />
+            )}
+          </div>
+          <div className={styleBurgerConstructor.burgerConstructor__total}>
+            <span
+              className={
+                styleBurgerConstructor.burgerConstructor__toraPriceContent
+              }
+            >
+              <p
+                className={
+                  styleBurgerConstructor.burgerConstructor__toralPrice +
+                  " text_type_digits-default"
+                }
+              >
+                {totalPrice + bunPrice * 2}
+              </p>
+              <CurrencyIcon type="primary" />
+            </span>
+            <Button onClick={orderHandler} type="primary" size="medium">
+              {bun.name ? "Оформить заказ" : "Добавтье булочки!"}
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
